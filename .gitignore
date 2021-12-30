@@ -4,6 +4,9 @@
 .build/
 samples/
 
+# Intermediate script files
+ownerinfo.*
+
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
 *.aux
