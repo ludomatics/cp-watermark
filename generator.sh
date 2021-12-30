@@ -1,15 +1,17 @@
 #!/bin/bash
 
-#TODO:- force require first and second param
-if [ $# -eq 0 ]; then
- echo "Please enter owner name without spaces"
+if [ $# -ne 2 ]; then
+ echo "Please enter correct number of arguments"
+ echo "1st arg: Client NAME withoutspaces"
+ echo "2nd arg: Client EMAIL withoutspaces"
  exit 1
 fi
 
-ownername="${1}" #TODO:- Trim spaces
+ownername="${1}"
 owneremail="${2}" 
 book="samples/teachers_trigonometria_template.pdf"
-watermark_file="watermark02"
+
+watermark_file="watermark"
 watermarked_book="${ownername}.pdf"
 ownerfile="ownerinfo.tex"
 
@@ -18,10 +20,8 @@ echo "\newcommand{\name}{${ownername}}" > ${ownerfile}
 echo "\newcommand{\email}{${owneremail}}" >> ${ownerfile}
 
 # Compile PDF watermark template with latex
-pdflatex ${watermark_file}
+pdflatex ${watermark_file} && \
 pdftk ${book} stamp ${watermark_file}.pdf output ${watermarked_book}
 
-# Deleting $ownerfile.tex and the auxiliary files related
+# Deleting auxiliary files
 rm *.aux *.log
-#rm ${ownerfile%.*}.*
-
