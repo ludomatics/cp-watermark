@@ -1,8 +1,28 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{tgbonum}
 \usepackage{eso-pic,graphicx}
+
+\include{ownerinfo}
+
 \begin{document}
-  \AddToShipoutPictureBG*{%
-    \AtPageUpperLeft{\raisebox{-\baselineskip}{\makebox[\paperwidth]{This is at the top, centred}}}%
-    \AtPageCenter{\rotatebox{52}{\makebox[0pt]{\Huge This is diagonaly across the page}}}}
-Some tex
+\AddToShipoutPictureBG{%
+  \AtPageUpperLeft{%
+    \raisebox{-8mm}{\makebox[\paperwidth]{%
+      \textcolor{gray}{\email}
+    }}
+  }%
+  \AtPageCenter{%
+    \rotatebox{52}{\makebox[0pt]{%
+      \Huge \textcolor{gray!30}{Autorizado para}
+      \textcolor{gray!30}{\name}
+    }}
+  }%
+  \AtPageLowerLeft{%
+    \raisebox{8mm}{\makebox[\paperwidth]{%
+      \textcolor{gray}{\email}
+    }}
+  }%
+}
+.
 \end{document}
